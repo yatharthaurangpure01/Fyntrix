@@ -1,4 +1,5 @@
-﻿import { StarIcon, MessageSquare, Shield, Radio } from "lucide-react";
+﻿import { useState } from "react";
+import { StarIcon, MessageSquare, Shield, Radio, Cpu } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -10,12 +11,8 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 
-const navigationItems = [
-  { label: "Products", href: "#products" },
-  { label: "About Us", href: "#about" },
-  { label: "News", href: "#news" },
-  { label: "Contact", href: "#contact" },
-];
+
+import { TermsModal } from "../../components/TermsModal";
 
 const tradingFeatures = [
   {
@@ -23,25 +20,29 @@ const tradingFeatures = [
     description:
       "11 specialized AI agents including Technical Analysis, Sentiment, Risk, and Market Regime agents collaborate for comprehensive insights.",
     gradient: true,
-    icon: null,
+    icon: Cpu,
+    image: "/multi-ai-agent.png",
   },
   {
     title: "AI Trading Coach & Strategist Chat",
-    description: "",
+    description: "Chat with Fyntrix like you would with a senior trader: break down a setup, stress‑test a plan, or ask for a cleaner risk‑reward alternative.",
     gradient: false,
     icon: MessageSquare,
+    image: "/ai-stratergist.png",
   },
   {
     title: "Risk Management Focus",
-    description: "",
+    description: "Decision-support system that provides recommendations without executing trades, keeping final control with you.",
     gradient: false,
     icon: Shield,
+    image: "/risk-management.png",
   },
   {
-    title: "RealTime Signal Feed",
-    description: "",
+    title: "Real-Time Signal Feed",
+    description: "Live, actionable picks with entry price, stop‑loss, target, conviction level, and mode ready to execute.",
     gradient: false,
     icon: Radio,
+    image: "/market-coverage.png",
   },
 ];
 
@@ -104,6 +105,9 @@ const socialIcons = [
 ];
 
 export const Landing = (): JSX.Element => {
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [activeFeature, setActiveFeature] = useState(0);
+
   return (
     <div className="bg-white w-full mx-auto relative overflow-x-hidden">
       {/* Mobile Navigation */}
@@ -112,28 +116,30 @@ export const Landing = (): JSX.Element => {
           <img
             className="w-[80px] h-auto"
             alt="Fyntrix logo"
-            src="/frame-36-1.png"
-          />
-          <Button className="px-4 py-2 bg-black rounded-full hover:bg-gray-800">
-            <span className="font-medium text-white text-sm">Get Started</span>
+            src="/frame-36-1.png" />
+          <Button asChild className="px-4 py-2 bg-black rounded-full hover:bg-gray-800">
+            <a href="https://staging.web.fyntrix.ai/login" target="_blank">
+              <span className="font-medium text-white text-sm">Get Started</span>
+            </a>
           </Button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-[600px] md:min-h-[800px] flex flex-col items-center justify-start pt-20 md:pt-32 px-4 overflow-hidden">
+      <section className="relative min-h-[600px] md:min-h-[800px] flex flex-col items-center justify-start pt-20 md:pt-24 px-4 overflow-hidden">
         <img
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
           alt="Hero background"
-          src="/image-7.png"
-        />
+          src="/image-7.png" />
 
         {/* Get Started Button - Top Right */}
         <div className="hidden md:block absolute top-6 right-8 z-20">
-          <Button className="px-8 py-6 bg-gradient-to-r from-[#0394fe] to-[#0bc0b5] rounded-full hover:shadow-lg transition-all duration-300 border-0">
-            <span className="font-heading font-semibold text-white text-lg">
-              Get Started
-            </span>
+          <Button asChild className="px-8 py-6 bg-gradient-to-r from-[#0394fe] to-[#0bc0b5] rounded-full hover:shadow-lg transition-all duration-300 border-0">
+            <a href="https://staging.web.fyntrix.ai/login" target="_blank">
+              <span className="font-heading font-semibold text-white text-lg">
+                Get Started
+              </span>
+            </a>
           </Button>
         </div>
 
@@ -141,40 +147,39 @@ export const Landing = (): JSX.Element => {
           <img
             className="w-[120px] md:w-[202px] h-auto object-cover mb-6 md:mb-8"
             alt="Fyntrix logo"
-            src="/frame-36-1.png"
-          />
+            src="/frame-36-1.png" />
 
-          <h1 className="max-w-[90%] md:max-w-[1039px] [text-shadow:0px_1px_4px_#00000040] font-heading font-bold text-3xl md:text-5xl lg:text-[64px] text-center tracking-tight leading-tight md:leading-[67.1px] mb-6 md:mb-8">
+          <h1 className="max-w-[90%] md:max-w-[1039px] [text-shadow:0px_1px_4px_#00000040] font-heading font-semibold text-3xl md:text-5xl lg:text-[64px] text-center tracking-tight leading-tight md:leading-[67.1px] mb-6 md:mb-8">
             <span className="text-black">
-              Trade Smart Trade Confidently with{" "}
+              AI-First{" "}
             </span>
-            <span className="text-[#0394fe]">AI-Powered</span>
-            <span className="text-black"> Insights.</span>
+            <br />
+            <span className="text-[#0394fe]">Trading Platform</span>
           </h1>
 
-          <p className="max-w-[90%] md:max-w-[871px] font-body font-normal text-[#656565] text-base md:text-xl lg:text-[28px] text-center tracking-normal leading-relaxed md:leading-[33.8px] mb-8 md:mb-12">
-            Unlock global markets, from crypto to forex and stocks all with
-            intuitive tools and automated trading intelligence.
+          <p className="max-w-[90%] md:max-w-[871px] font-body font-normal text-gray-800 text-base md:text-xl lg:text-xl text-center tracking-normal leading-relaxed md:leading-[33.8px] mb-8 md:mb-12">
+            Fyntrix is your AI Trading Coach, Research Buddy, and Strategist Chat. It delivers real‑time, AI‑driven trading signals backed by a transparent ledger so you always know what to do, why you’re doing it, and how it has performed.
           </p>
 
           <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center mb-6 md:mb-8 w-full">
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 items-center justify-center">
-              <img
-                className="w-[180px] md:w-[239px] h-auto cursor-pointer hover:scale-105 transition-transform"
-                alt="App Store"
-                src="/image-2.png"
-              />
-              <img
-                className="w-[180px] md:w-[239px] h-auto cursor-pointer hover:scale-105 transition-transform"
-                alt="Google Play"
-                src="/image-2-1.png"
-              />
+              <a href="https://play.google.com/" target="_blank" rel="noopener noreferrer">
+                <img
+                  className="w-[180px] md:w-[239px] h-auto cursor-pointer hover:scale-105 transition-transform"
+                  alt="App Store"
+                  src="/image-2.png" />
+              </a>
+              <a href="https://play.google.com/" target="_blank" rel="noopener noreferrer">
+                <img
+                  className="w-[180px] md:w-[239px] h-auto cursor-pointer hover:scale-105 transition-transform"
+                  alt="Google Play"
+                  src="/image-2-1.png" />
+              </a>
             </div>
             <img
               className="hidden lg:block w-[200px] h-[151px] object-cover"
               alt="QR Code"
-              src="/image-330.png"
-            />
+              src="/image-330.png" />
           </div>
 
           <div className="sm:w-full sm:grid sm:grid-cols-3 sm:gap-10">
@@ -190,6 +195,16 @@ export const Landing = (): JSX.Element => {
 
       {/* Video Section */}
       <section className="max-w-[1440px] mx-auto px-4 md:px-[59px] mt-12 md:mt-24">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="font-heading font-semibold text-3xl md:text-5xl lg:text-[64px] tracking-tight leading-tight md:leading-[67.1px] mb-4">
+            <span className="text-black">See </span>
+            <span className="text-[#0394fe]">Fyntrix </span>
+            <span className="text-black">in Action</span>
+          </h2>
+          <p className="font-body font-normal text-[#656565] text-base md:text-xl lg:text-2xl max-w-[871px] mx-auto leading-relaxed">
+            Watch how our AI-powered platform transforms trading decisions with real-time insights and intelligent analysis
+          </p>
+        </div>
         <div className="w-full h-[300px] md:h-[739px] rounded-[30px] md:rounded-[50px] overflow-hidden bg-[linear-gradient(135deg,rgba(222,241,255,1)_0%,rgba(234,255,254,1)_100%)] shadow-[0px_0px_30px_rgba(0,0,0,1)]">
           <iframe
             className="w-full h-full"
@@ -218,37 +233,24 @@ export const Landing = (): JSX.Element => {
             </h2>
 
             <p className="font-body font-normal text-[#686868] text-lg md:text-xl leading-relaxed mb-8 md:mb-12">
-              Harness the power of 11 specialized AI agents working together to
-              deliver comprehensive market insights and trading signals.
+              Our multi-agent AI system provides comprehensive trading insights while keeping you in complete control of your trading decisions
             </p>
 
             <div className="space-y-4">
               {tradingFeatures.map((feature, index) => (
-                <div key={index}>
-                  {index === 0 ? (
-                    <div className="group relative p-[2px] rounded-[30px] md:rounded-[50px] bg-gradient-to-r from-[#0394fe] to-[#0bc0b5] hover:shadow-2xl transition-all duration-300">
-                      <div className="bg-white rounded-[28px] md:rounded-[48px] p-6 md:p-8 h-full">
+                <div key={index} onClick={() => setActiveFeature(index)} className="cursor-pointer">
+                  {index === activeFeature ? (
+                    <div className="group relative p-[2px] rounded-[30px] md:rounded-[25px] bg-gradient-to-r from-[#0394fe] to-[#0bc0b5] hover:shadow-2xl  ">
+                      <div className="bg-white rounded-[28px] md:rounded-[23px] p-3 md:p-4 h-full">
                         <div className="flex items-start gap-4">
                           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center flex-shrink-0">
-                            <svg
-                              className="w-6 h-6 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
-                              />
-                            </svg>
+                            {feature.icon && <feature.icon className="w-6 h-6 text-white" />}
                           </div>
                           <div className="flex-1">
-                            <h3 className="bg-[linear-gradient(90deg,rgba(3,148,254,1)_0%,rgba(11,192,181,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] font-heading font-semibold text-xl md:text-[28px] tracking-normal leading-tight mb-3">
+                            <h3 className="bg-[linear-gradient(90deg,rgba(3,148,254,1)_0%,rgba(11,192,181,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] font-heading font-semibold text-xl md:text-xl tracking-normal leading-tight mb-2">
                               {feature.title}
                             </h3>
-                            <p className="font-body font-normal text-[#303030] text-base md:text-lg tracking-normal leading-relaxed">
+                            <p className="font-body font-normal text-[#303030] text-base md:text-base tracking-normal leading-relaxed">
                               {feature.description}
                             </p>
                           </div>
@@ -256,14 +258,14 @@ export const Landing = (): JSX.Element => {
                       </div>
                     </div>
                   ) : (
-                    <div className="group px-6 md:px-8 py-5 md:py-7 rounded-[30px] md:rounded-[50px] bg-white border-2 border-[#e3e3e3] hover:border-[#0394fe] hover:shadow-lg transition-all duration-300 ">
+                    <div className="group px-6 md:px-4 py-5 md:py-3 rounded-[30px] md:rounded-[50px] bg-white border-2 border-[#e3e3e3] hover:border-[#0394fe] hover:shadow-lg   ">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0394fe]/10 to-[#0bc0b5]/10 flex items-center justify-center flex-shrink-0 group-hover:from-[#0394fe] group-hover:to-[#0bc0b5] transition-all duration-300">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0394fe]/10 to-[#0bc0b5]/10 flex items-center justify-center flex-shrink-0 group-hover:from-[#0394fe] group-hover:to-[#0bc0b5]  ">
                           {feature.icon && (
                             <feature.icon className="w-5 h-5 text-[#0394fe] group-hover:text-white transition-colors duration-300" />
                           )}
                         </div>
-                        <h3 className="font-heading font-semibold text-black text-lg md:text-[24px] tracking-normal leading-tight group-hover:text-[#0394fe] transition-colors duration-300">
+                        <h3 className="font-heading font-semibold text-black text-lg md:text-lg tracking-normal leading-tight group-hover:text-[#0394fe] transition-colors duration-300">
                           {feature.title}
                         </h3>
                       </div>
@@ -277,10 +279,9 @@ export const Landing = (): JSX.Element => {
           <div className="flex items-center justify-center relative">
             <div className="absolute inset-0 bg-gradient-to-br from-[#0394fe]/20 to-[#0bc0b5]/20 rounded-[50px] blur-2xl"></div>
             <img
-              className="relative w-full max-w-[400px] md:max-w-[602px] h-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
-              alt="Phone mockup"
-              src="/image-366.png"
-            />
+              className="relative w-full max-w-[400px] md:max-w-[602px] max-h-[602px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+              alt={tradingFeatures[activeFeature].title}
+              src={tradingFeatures[activeFeature].image} />
           </div>
         </div>
       </section>
@@ -290,8 +291,7 @@ export const Landing = (): JSX.Element => {
         <img
           className="absolute inset-0 w-full h-full object-cover opacity-50"
           alt="Background"
-          src="/image-1.png"
-        />
+          src="/image-1.png" />
 
         <div className="relative max-w-[1440px] mx-auto px-4 md:px-[59px]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -299,8 +299,7 @@ export const Landing = (): JSX.Element => {
               <img
                 className="w-full max-w-[300px] md:max-w-[437px] h-auto object-contain"
                 alt="Phone mockup"
-                src="/image-362.png"
-              />
+                src="/image-362.png" />
             </div>
 
             <div className="order-1 lg:order-2">
@@ -318,9 +317,7 @@ export const Landing = (): JSX.Element => {
                 {tradeStats.map((stat, index) => (
                   <div key={index} className="flex flex-col items-start">
                     <div
-                      className={` font-semibold ${
-                        stat.color || "text-white"
-                      } text-2xl md:text-4xl tracking-normal leading-tight`}
+                      className={` font-semibold ${stat.color || "text-white"} text-2xl md:text-4xl tracking-normal leading-tight`}
                     >
                       {stat.value}
                     </div>
@@ -336,12 +333,10 @@ export const Landing = (): JSX.Element => {
                   <img
                     className="w-[38px] h-[26px] object-cover"
                     alt="Flag"
-                    src="/image-39-1.png"
-                  />
+                    src="/image-39-1.png" />
                   <Input
                     placeholder="Enter Mobile No."
-                    className="flex-1 border-0 bg-transparent  font-normal text-[#717171] text-base md:text-xl focus-visible:ring-0 focus-visible:ring-offset-0"
-                  />
+                    className="flex-1 border-0 bg-transparent  font-normal text-[#717171] text-base md:text-xl focus-visible:ring-0 focus-visible:ring-offset-0" />
                 </div>
                 <Button className="w-[140px] h-[45px] sm:w-[178px] sm:h-[52px] bg-[#0394fe] rounded-3xl hover:bg-[#0280d9]">
                   <span className=" font-medium text-white text-base md:text-lg">
@@ -359,8 +354,7 @@ export const Landing = (): JSX.Element => {
         <img
           className="hidden md:block absolute top-0 left-0 w-[199px] h-[619px]"
           alt="Decorative"
-          src="/image-357.png"
-        />
+          src="/image-357.png" />
 
         <h2 className="relative z-10 bg-[linear-gradient(90deg,rgba(11,192,181,1)_0%,rgba(5,90,85,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent]  font-normal text-3xl md:text-5xl lg:text-[64px] text-center tracking-normal leading-tight mb-8 md:mb-16">
           Built on Trust and Transparency
@@ -369,8 +363,7 @@ export const Landing = (): JSX.Element => {
         <img
           className="hidden md:block absolute top-0 right-0 w-[670px] h-[219px]"
           alt="Decorative"
-          src="/image-357-1.png"
-        />
+          src="/image-357-1.png" />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-[47px] relative z-10">
           {trustFeatures.map((feature, index) => (
@@ -393,274 +386,262 @@ export const Landing = (): JSX.Element => {
 
       {/* Advisory Section */}
       {/* <section className="relative bg-black mt-16 md:mt-32 py-12 md:py-24 overflow-hidden">
-        <img
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
-          alt="Background"
-          src="/image-359.png"
-        />
-
-        <div className="relative max-w-[1440px] mx-auto px-4 md:px-[59px]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div>
-              <h2 className=" font-normal text-4xl md:text-6xl lg:text-[80px] tracking-normal leading-tight mb-8 md:mb-12">
-                <span className="text-white">
-                  Advisory to Execution All on{" "}
-                </span>
-                <span className="text-[#0394fe]">Fyntrix</span>
-              </h2>
-
-              <div className="w-full max-w-[747px] bg-white rounded-[50px] shadow-[0px_0px_29.3px_#ffffffb8] flex flex-col sm:flex-row items-center p-4 md:p-6 gap-4">
-                <img
-                  className="w-[38px] h-[26px] object-cover"
-                  alt="Flag"
-                  src="/image-39-1.png"
-                />
-                <Input
-                  placeholder="Enter Mobile No."
-                  className="flex-1 border-0 bg-transparent  font-normal text-[#717171] text-base md:text-xl focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
-                <Button className="w-full sm:w-[188px] h-[52px] bg-[#0394fe] rounded-[25px] hover:bg-[#0280d9]">
-                  <span className=" font-medium text-white text-base md:text-lg">
-                    Open Free Demat
-                  </span>
-                </Button>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center gap-4">
-              <img
-                className="w-full max-w-[300px] md:max-w-[541px] h-auto object-contain"
-                alt="Phone mockup"
-                src="/image-362.png"
-              />
-              <img
-                className="hidden md:block w-full max-w-[210px] h-auto object-contain"
-                alt="Phone mockup"
-                src="/image-363.png"
-              />
-            </div>
-          </div>
-        </div>
-      </section> */}
+                    <img
+                      className="absolute inset-0 w-full h-full object-cover opacity-50"
+                      alt="Background"
+                      src="/image-359.png"
+                    />
+            
+                    <div className="relative max-w-[1440px] mx-auto px-4 md:px-[59px]">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                        <div>
+                          <h2 className=" font-normal text-4xl md:text-6xl lg:text-[80px] tracking-normal leading-tight mb-8 md:mb-12">
+                            <span className="text-white">
+                              Advisory to Execution All on{" "}
+                            </span>
+                            <span className="text-[#0394fe]">Fyntrix</span>
+                          </h2>
+            
+                          <div className="w-full max-w-[747px] bg-white rounded-[50px] shadow-[0px_0px_29.3px_#ffffffb8] flex flex-col sm:flex-row items-center p-4 md:p-6 gap-4">
+                            <img
+                              className="w-[38px] h-[26px] object-cover"
+                              alt="Flag"
+                              src="/image-39-1.png"
+                            />
+                            <Input
+                              placeholder="Enter Mobile No."
+                              className="flex-1 border-0 bg-transparent  font-normal text-[#717171] text-base md:text-xl focus-visible:ring-0 focus-visible:ring-offset-0"
+                            />
+                            <Button className="w-full sm:w-[188px] h-[52px] bg-[#0394fe] rounded-[25px] hover:bg-[#0280d9]">
+                              <span className=" font-medium text-white text-base md:text-lg">
+                                Open Free Demat
+                              </span>
+                            </Button>
+                          </div>
+                        </div>
+            
+                        <div className="flex items-center justify-center gap-4">
+                          <img
+                            className="w-full max-w-[300px] md:max-w-[541px] h-auto object-contain"
+                            alt="Phone mockup"
+                            src="/image-362.png"
+                          />
+                          <img
+                            className="hidden md:block w-full max-w-[210px] h-auto object-contain"
+                            alt="Phone mockup"
+                            src="/image-363.png"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </section> */}
 
       {/* Testimonials Section */}
-      <section className="max-w-[1440px] mx-auto px-4 md:px-[59px] mt-16 md:mt-32">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-heading font-normal text-4xl md:text-5xl lg:text-[64px] tracking-normal leading-tight mb-4">
-            <span className="text-black">What Our </span>
-            <span className="text-[#0394fe]">Traders</span>
-            <span className="text-black"> Say</span>
-          </h2>
-          <p className="font-body font-normal text-[#686868] text-lg md:text-xl max-w-2xl mx-auto">
-            Join thousands of traders who trust Fyntrix for their trading
-            decisions
-          </p>
-        </div>
+      {/* <section className="max-w-[1440px] mx-auto px-4 md:px-[59px] mt-16 md:mt-32">
+      <div className="text-center mb-12 md:mb-16">
+        <h2 className="font-heading font-normal text-4xl md:text-5xl lg:text-[64px] tracking-normal leading-tight mb-4">
+          <span className="text-black">What Our </span>
+          <span className="text-[#0394fe]">Traders</span>
+          <span className="text-black"> Say</span>
+        </h2>
+        <p className="font-body font-normal text-[#686868] text-lg md:text-xl max-w-2xl mx-auto">
+          Join thousands of traders who trust Fyntrix for their trading
+          decisions
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {/* Testimonial 1 */}
-          <Card className="rounded-[30px] border border-solid border-[#e3e3e3] bg-white hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-6 md:p-8">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                  />
-                ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <Card className="rounded-[30px] border border-solid border-[#e3e3e3] bg-white hover:shadow-xl transition-shadow duration-300">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex items-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon
+                  key={i}
+                  className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
+              "Fyntrix's AI-powered insights have completely transformed my
+              trading strategy. The multi-agent analysis gives me confidence
+              in every decision."
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
+                <span className="font-heading font-semibold text-white text-lg">
+                  RK
+                </span>
               </div>
-              <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
-                "Fyntrix's AI-powered insights have completely transformed my
-                trading strategy. The multi-agent analysis gives me confidence
-                in every decision."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
-                  <span className="font-heading font-semibold text-white text-lg">
-                    RK
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-black text-lg">
-                    Rajesh Kumar
-                  </h4>
-                  <p className="font-body font-normal text-[#686868] text-sm">
-                    Day Trader
-                  </p>
-                </div>
+              <div>
+                <h4 className="font-heading font-semibold text-black text-lg">
+                  Rajesh Kumar
+                </h4>
+                <p className="font-body font-normal text-[#686868] text-sm">
+                  Day Trader
+                </p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Testimonial 2 */}
-          <Card className="rounded-[30px] border border-solid border-[#e3e3e3] bg-gradient-to-br from-[#0394fe]/5 to-[#0bc0b5]/5 hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-6 md:p-8">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                  />
-                ))}
+        <Card className="rounded-[30px] border border-solid border-[#e3e3e3] bg-gradient-to-br from-[#0394fe]/5 to-[#0bc0b5]/5 hover:shadow-xl transition-shadow duration-300">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex items-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon
+                  key={i}
+                  className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
+              "The real-time signals and transparent ledger make it easy to
+              understand why each trade is recommended. Best trading tool I've
+              used!"
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
+                <span className="font-heading font-semibold text-white text-lg">
+                  PS
+                </span>
               </div>
-              <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
-                "The real-time signals and transparent ledger make it easy to
-                understand why each trade is recommended. Best trading tool I've
-                used!"
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
-                  <span className="font-heading font-semibold text-white text-lg">
-                    PS
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-black text-lg">
-                    Priya Sharma
-                  </h4>
-                  <p className="font-body font-normal text-[#686868] text-sm">
-                    Swing Trader
-                  </p>
-                </div>
+              <div>
+                <h4 className="font-heading font-semibold text-black text-lg">
+                  Priya Sharma
+                </h4>
+                <p className="font-body font-normal text-[#686868] text-sm">
+                  Swing Trader
+                </p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Testimonial 3 */}
-          <Card className="rounded-[30px] border border-solid border-[#e3e3e3] bg-white hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-6 md:p-8">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                  />
-                ))}
+        <Card className="rounded-[30px] border border-solid border-[#e3e3e3] bg-white hover:shadow-xl transition-shadow duration-300">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex items-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon
+                  key={i}
+                  className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
+              "As a beginner, the AI Trading Coach has been invaluable. It's
+              like having a professional mentor guiding every trade."
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
+                <span className="font-heading font-semibold text-white text-lg">
+                  AM
+                </span>
               </div>
-              <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
-                "As a beginner, the AI Trading Coach has been invaluable. It's
-                like having a professional mentor guiding every trade."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
-                  <span className="font-heading font-semibold text-white text-lg">
-                    AM
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-black text-lg">
-                    Amit Mehta
-                  </h4>
-                  <p className="font-body font-normal text-[#686868] text-sm">
-                    Options Trader
-                  </p>
-                </div>
+              <div>
+                <h4 className="font-heading font-semibold text-black text-lg">
+                  Amit Mehta
+                </h4>
+                <p className="font-body font-normal text-[#686868] text-sm">
+                  Options Trader
+                </p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Testimonial 4 */}
-          <Card className="hidden md:block rounded-[30px] border border-solid border-[#e3e3e3] bg-white hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-6 md:p-8">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(4)].map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                  />
-                ))}
+        <Card className="hidden md:block rounded-[30px] border border-solid border-[#e3e3e3] bg-white hover:shadow-xl transition-shadow duration-300">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex items-center gap-1 mb-4">
+              {[...Array(4)].map((_, i) => (
+                <StarIcon
+                  key={i}
+                  className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
+              "The risk management features are outstanding. I can trade with
+              different profiles and the AI adapts to my strategy perfectly."
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
+                <span className="font-heading font-semibold text-white text-lg">
+                  SK
+                </span>
               </div>
-              <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
-                "The risk management features are outstanding. I can trade with
-                different profiles and the AI adapts to my strategy perfectly."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
-                  <span className="font-heading font-semibold text-white text-lg">
-                    SK
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-black text-lg">
-                    Suresh Kapoor
-                  </h4>
-                  <p className="font-body font-normal text-[#686868] text-sm">
-                    Futures Trader
-                  </p>
-                </div>
+              <div>
+                <h4 className="font-heading font-semibold text-black text-lg">
+                  Suresh Kapoor
+                </h4>
+                <p className="font-body font-normal text-[#686868] text-sm">
+                  Futures Trader
+                </p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Testimonial 5 */}
-          <Card className="hidden md:block rounded-[30px] border border-solid border-[#e3e3e3] bg-gradient-to-br from-[#0394fe]/5 to-[#0bc0b5]/5 hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-6 md:p-8">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                  />
-                ))}
+        <Card className="hidden md:block rounded-[30px] border border-solid border-[#e3e3e3] bg-gradient-to-br from-[#0394fe]/5 to-[#0bc0b5]/5 hover:shadow-xl transition-shadow duration-300">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex items-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon
+                  key={i}
+                  className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
+              "11 AI agents working together provide insights I could never
+              get manually. My win rate has improved significantly!"
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
+                <span className="font-heading font-semibold text-white text-lg">
+                  NP
+                </span>
               </div>
-              <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
-                "11 AI agents working together provide insights I could never
-                get manually. My win rate has improved significantly!"
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
-                  <span className="font-heading font-semibold text-white text-lg">
-                    NP
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-black text-lg">
-                    Neha Patel
-                  </h4>
-                  <p className="font-body font-normal text-[#686868] text-sm">
-                    Intraday Trader
-                  </p>
-                </div>
+              <div>
+                <h4 className="font-heading font-semibold text-black text-lg">
+                  Neha Patel
+                </h4>
+                <p className="font-body font-normal text-[#686868] text-sm">
+                  Intraday Trader
+                </p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
 
-          {/* Testimonial 6 */}
-          <Card className="hidden md:block rounded-[30px] border border-solid border-[#e3e3e3] bg-white hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-6 md:p-8">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                  />
-                ))}
+        <Card className="hidden md:block rounded-[30px] border border-solid border-[#e3e3e3] bg-white hover:shadow-xl transition-shadow duration-300">
+          <CardContent className="p-6 md:p-8">
+            <div className="flex items-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <StarIcon
+                  key={i}
+                  className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
+              "The transparency and detailed analysis behind each signal
+              builds trust. I know exactly why I'm making each trade."
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
+                <span className="font-heading font-semibold text-white text-lg">
+                  VG
+                </span>
               </div>
-              <p className="font-body font-normal text-[#303030] text-base md:text-lg leading-relaxed mb-6">
-                "The transparency and detailed analysis behind each signal
-                builds trust. I know exactly why I'm making each trade."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0394fe] to-[#0bc0b5] flex items-center justify-center">
-                  <span className="font-heading font-semibold text-white text-lg">
-                    VG
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-heading font-semibold text-black text-lg">
-                    Vikram Gupta
-                  </h4>
-                  <p className="font-body font-normal text-[#686868] text-sm">
-                    Scalper
-                  </p>
-                </div>
+              <div>
+                <h4 className="font-heading font-semibold text-black text-lg">
+                  Vikram Gupta
+                </h4>
+                <p className="font-body font-normal text-[#686868] text-sm">
+                  Scalper
+                </p>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
 
-      {/* FAQ Section */}
+    {/* FAQ Section */}
       <section className="max-w-[1440px] mx-auto px-4 md:px-[59px] mt-16 md:mt-60">
         <h2 className=" font-normal text-4xl md:text-5xl lg:text-[64px] tracking-normal leading-tight mb-8 md:mb-16">
           <span className="text-black">FAQ</span>
@@ -681,15 +662,13 @@ export const Landing = (): JSX.Element => {
                 <img
                   className="w-[10px] md:w-[15px] h-auto transition-transform duration-200"
                   alt="Arrow"
-                  src="/arrow-3.svg"
-                />
+                  src="/arrow-3.svg" />
                 {item.question}
               </AccordionTrigger>
               <img
                 className="w-full h-1 object-cover"
                 alt="Line"
-                src="/line-1.svg"
-              />
+                src="/line-1.svg" />
               <AccordionContent>
                 <div className="py-6 px-4 md:px-12 font-body font-normal text-[#686868] text-base md:text-xl leading-relaxed">
                   {item.answer}
@@ -708,19 +687,20 @@ export const Landing = (): JSX.Element => {
             <img
               className="w-[94px] h-auto mb-4"
               alt="Fyntrix logo"
-              src="/frame-36-1-1.png"
-            />
+              src="/frame-36-1-1.png" />
             <div className="flex flex-col gap-4">
-              <img
-                className="w-[150px] md:w-[193px] h-auto cursor-pointer hover:scale-105 transition-transform"
-                alt="App Store"
-                src="/image-4.png"
-              />
-              <img
-                className="w-[150px] md:w-[193px] h-auto cursor-pointer hover:scale-105 transition-transform"
-                alt="Google Play"
-                src="/image-2-2.png"
-              />
+              <a href="https://play.google.com/" target="_blank" rel="noopener noreferrer">
+                <img
+                  className="w-[150px] md:w-[193px] h-auto cursor-pointer hover:scale-105 transition-transform"
+                  alt="App Store"
+                  src="/image-4.png" />
+              </a>
+              <a href="https://play.google.com/" target="_blank" rel="noopener noreferrer">
+                <img
+                  className="w-[150px] md:w-[193px] h-auto cursor-pointer hover:scale-105 transition-transform"
+                  alt="Google Play"
+                  src="/image-2-2.png" />
+              </a>
             </div>
           </div>
 
@@ -729,24 +709,25 @@ export const Landing = (): JSX.Element => {
             <h3 className="font-heading font-semibold text-black text-2xl mb-2">
               Quick Links
             </h3>
-            <a
-              href="#features"
-              className="font-body font-medium text-[#4a4949] text-lg hover:text-[#0394fe] transition-colors"
+            <button
+              onClick={() => setIsTermsOpen(true)}
+              className="font-body font-medium text-[#4a4949] text-lg hover:text-[#0394fe] transition-colors bg-transparent border-0 p-0 cursor-pointer"
             >
-              Features
-            </a>
+              Legal
+            </button>
             <a
-              href="#start"
+              href="https://staging.web.fyntrix.ai/login"
+              target="_blank"
               className="font-body font-medium text-[#4a4949] text-lg hover:text-[#0394fe] transition-colors"
             >
               Start Using Fyntrix
             </a>
-            <a
-              href="#terms"
-              className="font-body font-medium text-[#4a4949] text-lg hover:text-[#0394fe] transition-colors"
+            <button
+              onClick={() => setIsTermsOpen(true)}
+              className="font-body font-medium text-[#4a4949] text-lg hover:text-[#0394fe] transition-colors bg-transparent border-0 p-0 cursor-pointer"
             >
               Terms &amp; Conditions
-            </a>
+            </button>
           </nav>
 
           {/* Right Column - Social and Copyright */}
@@ -764,8 +745,7 @@ export const Landing = (): JSX.Element => {
                   <img
                     className="w-full h-full object-cover"
                     alt={icon.alt}
-                    src={icon.src}
-                  />
+                    src={icon.src} />
                 </a>
               ))}
             </div>
@@ -784,6 +764,8 @@ export const Landing = (): JSX.Element => {
           </p>
         </div>
       </footer>
+
+      <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
     </div>
   );
 };
