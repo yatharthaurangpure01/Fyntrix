@@ -111,13 +111,10 @@ export const Landing = (): JSX.Element => {
   return (
     <div className="bg-white w-full mx-auto relative overflow-x-hidden">
       {/* Mobile Navigation */}
-      <nav className="md:hidden fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50 px-4 py-3">
+      <nav className="md:hidden fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm border-b border-gray-200 z-50 px-4 py-3">
         <div className="flex items-center justify-between">
-          <img
-            className="w-[80px] h-auto"
-            alt="Fyntrix logo"
-            src="/frame-36-1.png" />
-          <Button asChild className="px-4 py-2 bg-black rounded-full hover:bg-gray-800">
+          <div></div>
+          <Button asChild className="px-4 py-2 bg-gradient-to-r from-[#0394fe] to-[#0bc0b5] rounded-full">
             <a href="https://staging.web.fyntrix.ai/login" target="_blank">
               <span className="font-medium text-white text-sm">Get Started</span>
             </a>
@@ -149,7 +146,7 @@ export const Landing = (): JSX.Element => {
             alt="Fyntrix logo"
             src="/frame-36-1.png" />
 
-          <h1 className="max-w-[90%] md:max-w-[1039px] [text-shadow:0px_1px_4px_#00000040] font-heading font-semibold text-3xl md:text-5xl lg:text-[64px] text-center tracking-tight leading-tight md:leading-[67.1px] mb-6 md:mb-8">
+          <h1 className="max-w-[90%] md:max-w-[1039px] [text-shadow:0px_1px_4px_#00000040] font-heading font-semibold text-4xl md:text-5xl lg:text-[64px] text-center tracking-tight leading-tight md:leading-[67.1px] mb-6 md:mb-8">
             <span className="text-black">
               AI-First{" "}
             </span>
@@ -157,12 +154,12 @@ export const Landing = (): JSX.Element => {
             <span className="text-[#0394fe]">Trading Platform</span>
           </h1>
 
-          <p className="max-w-[90%] md:max-w-[871px] font-body font-normal text-gray-800 text-base md:text-xl lg:text-xl text-center tracking-normal leading-relaxed md:leading-[33.8px] mb-8 md:mb-12">
+          <p className="max-w-[95%] md:max-w-[871px] font-body font-normal text-gray-800 text-base md:text-xl lg:text-xl text-center tracking-normal leading-relaxed md:leading-[33.8px] mb-8 md:mb-12">
             Fyntrix is your AI Trading Coach, Research Buddy, and Strategist Chat. It delivers real‑time, AI‑driven trading signals backed by a transparent ledger so you always know what to do, why you’re doing it, and how it has performed.
           </p>
 
           <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center mb-6 md:mb-8 w-full">
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 items-center justify-center">
+            <div className="flex flex-row gap-4 md:gap-6 items-center justify-center">
               <a href="https://play.google.com/" target="_blank" rel="noopener noreferrer">
                 <img
                   className="w-[180px] md:w-[239px] h-auto cursor-pointer hover:scale-105 transition-transform"
@@ -338,11 +335,13 @@ export const Landing = (): JSX.Element => {
                     placeholder="Enter Mobile No."
                     className="flex-1 border-0 bg-transparent  font-normal text-[#717171] text-base md:text-xl focus-visible:ring-0 focus-visible:ring-offset-0" />
                 </div>
-                <Button className="w-[140px] h-[45px] sm:w-[178px] sm:h-[52px] bg-[#0394fe] rounded-3xl hover:bg-[#0280d9]">
-                  <span className=" font-medium text-white text-base md:text-lg">
-                    Claim 3 Trades
-                  </span>
-                </Button>
+                <a href="https://staging.web.fyntrix.ai/login" target="_blank">
+                  <Button className="w-[140px] h-[45px] sm:w-[178px] sm:h-[52px] bg-[#0394fe] rounded-3xl hover:bg-[#0280d9]">
+                    <span className=" font-medium text-white text-base md:text-lg">
+                      Claim 3 Trades
+                    </span>
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
