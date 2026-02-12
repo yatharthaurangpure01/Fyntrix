@@ -123,7 +123,7 @@ export const Landing = (): JSX.Element => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-[600px] md:min-h-[800px] flex flex-col items-center justify-start pt-20 md:pt-24 px-4 overflow-hidden">
+      <section className="relative min-h-[600px] md:min-h-[800px] flex flex-col items-center justify-start pt-20 md:pt-12 px-4 overflow-hidden">
         <img
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
           alt="Hero background"
@@ -158,7 +158,21 @@ export const Landing = (): JSX.Element => {
             Fyntrix is your AI Trading Coach, Research Buddy, and Strategist Chat. It delivers real‑time, AI‑driven trading signals backed by a transparent ledger so you always know what to do, why you’re doing it, and how it has performed.
           </p>
 
-          <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center mb-6 md:mb-8 w-full">
+          <div className="w-full max-w-[90%] md:max-w-[900px] h-[250px] md:h-[506px] mb-8 md:mb-12 rounded-[20px] md:rounded-[30px] overflow-hidden shadow-[0px_0px_30px_rgba(0,0,0,0.8)]">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/NslzkW-Uu6Y?si=k85Je-sI_43nqj3O"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
+
+
+
+
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center mb-0 md:mb-3 w-full">
             <div className="flex flex-row gap-4 md:gap-6 items-center justify-center">
               <a href="https://play.google.com/" target="_blank" rel="noopener noreferrer">
                 <img
@@ -182,7 +196,7 @@ export const Landing = (): JSX.Element => {
           <div className="sm:w-full sm:grid sm:grid-cols-3 sm:gap-10">
             <div></div>
             <div></div>
-            <Badge className="w-[158px] h-[50px] bg-white rounded-[50px] shadow-[0px_0px_4px_#00000040] flex items-center justify-center gap-2 border-0">
+            <Badge className="w-[158px] h-[50px] bg-white rounded-[50px] shadow-[0px_0px_4px_#00000040] flex items-center justify-center gap-2">
               <StarIcon className="w-[22px] h-6 fill-yellow-400 text-yellow-400" />
               <span className="font-normal text-black text-xl">4.6 Rating</span>
             </Badge>
