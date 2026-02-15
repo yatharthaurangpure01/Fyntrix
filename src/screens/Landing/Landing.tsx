@@ -172,7 +172,7 @@ export const Landing = (): JSX.Element => {
 
 
 
-          <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center mb-0 md:mb-3 w-full">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center mb-3 w-full">
             <div className="flex flex-row gap-4 md:gap-6 items-center justify-center">
               <a href="https://play.google.com/" target="_blank" rel="noopener noreferrer">
                 <img
@@ -193,7 +193,7 @@ export const Landing = (): JSX.Element => {
               src="/image-330.png" />
           </div>
 
-          <div className="sm:w-full sm:grid sm:grid-cols-3 sm:gap-10">
+          <div className="sm:w-full sm:grid sm:grid-cols-3 sm:gap-10 ">
             <div></div>
             <div></div>
             <Badge className="w-[158px] h-[50px] bg-white rounded-[50px] shadow-[0px_0px_4px_#00000040] flex items-center justify-center gap-2">
@@ -342,7 +342,7 @@ export const Landing = (): JSX.Element => {
               <div className="w-full max-w-[747px] bg-white rounded-[50px] shadow-[0px_0px_29.3px_#ffffffb8] flex justify-between sm:flex-wrap items-center p-4 gap-4">
                 <div className="flex items-center justify-center">
                   <img
-                    className="w-[38px] h-[26px] object-cover"
+                    className="hidden md:block w-[38px] h-[26px] object-cover"
                     alt="Flag"
                     src="/image-39-1.png" />
                   <Input
