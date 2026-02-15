@@ -54,16 +54,16 @@ const tradingFeatures = [
 
 const trustFeatures = [
   {
-    title: "Bank level encryption",
+    title: "Trusted Decisions",
     description:
-      "Your data is protected with the same security standard used by major finnancial institutions.",
+      "Human supervised framework aligns outputs with governance and auditable trails.",
     gradient:
       "bg-[linear-gradient(89deg,rgba(255,255,255,1)_0%,rgba(11,192,181,1)_100%)]",
   },
   {
-    title: "Full transparency",
+    title: "Transparent Performance",
     description:
-      "Your data is protected with the same security standard used by major finnancial institutions.",
+      "Audited Timestamps give Confidence and Conviction.",
     gradient:
       "bg-[linear-gradient(89deg,rgba(255,255,255,1)_0%,rgba(255,165,0,1)_100%)]",
     accent: true,
