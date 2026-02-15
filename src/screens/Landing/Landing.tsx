@@ -46,11 +46,11 @@ const tradingFeatures = [
   },
 ];
 
-const tradeStats = [
-  { value: "2036", label: "Closed Trade" },
-  { value: "Instant", label: "Buy/Sell", color: "text-[#12ba00]" },
-  { value: "99/- mon", label: "Low Cost Plan" },
-];
+// const tradeStats = [
+//   { value: "2036", label: "Closed Trade" },
+//   { value: "Instant", label: "Buy/Sell", color: "text-[#12ba00]" },
+//   { value: "99/- mon", label: "Low Cost Plan" },
+// ];
 
 const trustFeatures = [
   {
@@ -99,9 +99,9 @@ const faqItems = [
 ];
 
 const socialIcons = [
-  { src: "/image-368.png", alt: "Social 1" },
-  { src: "/image-369.png", alt: "Social 2" },
-  { src: "/image-370.png", alt: "Social 3" },
+  { src: "/youtube.png", alt: "Social 1", href: "https://www.youtube.com/@Fyntrix-ai" },
+  { src: "/instagram.jpg", alt: "Social 2", href: "https://www.instagram.com/fyntrix.ai/" },
+  { src: "/image-369.png", alt: "Social 3", href: "https://www.linkedin.com/company/fyntrix-ai/" },
 ];
 
 export const Landing = (): JSX.Element => {
@@ -115,7 +115,7 @@ export const Landing = (): JSX.Element => {
         <div className="flex items-center justify-between">
           <div></div>
           <Button asChild className="px-4 py-2 bg-gradient-to-r from-[#0394fe] to-[#0bc0b5] rounded-full">
-            <a href="https://staging.web.fyntrix.ai/login" target="_blank">
+            <a href="https://web.fyntrix.ai/login" target="_blank">
               <span className="font-medium text-white text-sm">Get Started</span>
             </a>
           </Button>
@@ -132,7 +132,7 @@ export const Landing = (): JSX.Element => {
         {/* Get Started Button - Top Right */}
         <div className="hidden md:block absolute top-6 right-8 z-20">
           <Button asChild className="px-8 py-6 bg-gradient-to-r from-[#0394fe] to-[#0bc0b5] rounded-full hover:shadow-lg transition-all duration-300 border-0">
-            <a href="https://staging.web.fyntrix.ai/login" target="_blank">
+            <a href="https://web.fyntrix.ai/login" target="_blank">
               <span className="font-heading font-semibold text-white text-lg">
                 Get Started
               </span>
@@ -142,7 +142,7 @@ export const Landing = (): JSX.Element => {
 
         <div className="relative z-10 flex flex-col items-center w-full">
           <img
-            className="w-[120px] md:w-[202px] h-auto object-cover mb-6 md:mb-8"
+            className="w-[200px] md:w-[302px] h-auto object-cover mb-4 md:mb-6"
             alt="Fyntrix logo"
             src="/frame-36-1.png" />
 
@@ -324,7 +324,7 @@ export const Landing = (): JSX.Element => {
                 For Stock | Futures | Options | Commodities
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
+              {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
                 {tradeStats.map((stat, index) => (
                   <div key={index} className="flex flex-col items-start">
                     <div
@@ -337,7 +337,7 @@ export const Landing = (): JSX.Element => {
                     </div>
                   </div>
                 ))}
-              </div>
+              </div> */}
 
               <div className="w-full max-w-[747px] bg-white rounded-[50px] shadow-[0px_0px_29.3px_#ffffffb8] flex justify-between sm:flex-wrap items-center p-4 gap-4">
                 <div className="flex items-center justify-center">
@@ -349,10 +349,10 @@ export const Landing = (): JSX.Element => {
                     placeholder="Enter Mobile No."
                     className="flex-1 border-0 bg-transparent  font-normal text-[#717171] text-base md:text-xl focus-visible:ring-0 focus-visible:ring-offset-0" />
                 </div>
-                <a href="https://staging.web.fyntrix.ai/login" target="_blank">
+                <a href="https://web.fyntrix.ai/login" target="_blank">
                   <Button className="w-[140px] h-[45px] sm:w-[178px] sm:h-[52px] bg-[#0394fe] rounded-3xl hover:bg-[#0280d9]">
                     <span className=" font-medium text-white text-base md:text-lg">
-                      Claim 3 Trades
+                      Get Started
                     </span>
                   </Button>
                 </a>
@@ -729,7 +729,7 @@ export const Landing = (): JSX.Element => {
               Legal
             </button>
             <a
-              href="https://staging.web.fyntrix.ai/login"
+              href="https://web.fyntrix.ai/login"
               target="_blank"
               className="font-body font-medium text-[#4a4949] text-lg hover:text-[#0394fe] transition-colors"
             >
@@ -752,7 +752,7 @@ export const Landing = (): JSX.Element => {
               {socialIcons.map((icon, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={icon.href}
                   className="w-[50px] h-[50px] rounded-full border-2 border-solid border-black overflow-hidden hover:border-[#0394fe] hover:scale-110 transition-all duration-300"
                 >
                   <img

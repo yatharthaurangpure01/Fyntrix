@@ -48,8 +48,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Montserrat",
-          "Roboto",
+          "Outfit",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
@@ -58,8 +57,8 @@ module.exports = {
           '"Segoe UI Symbol"',
           '"Noto Color Emoji"',
         ],
-        heading: ["Montserrat", "sans-serif"],
-        body: ["Roboto", "sans-serif"],
+        heading: ["Outfit", "sans-serif"],
+        body: ["Outfit", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
